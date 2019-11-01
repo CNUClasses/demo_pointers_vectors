@@ -44,10 +44,9 @@ void vectors_with_unique_pointers(){
 		myUniqueClasses.emplace_back(new JustAClass(i));
 	}
 
-
 	//talk, enhanced for, type is automatically inferred
 	//note that you get x by reference, without the & x would be a copy
-	//which is forbidden with unique pointers
+	//which is forbidden with unique pointers, so it would not compile
 	for (auto &x : myUniqueClasses)
 		x->speak();
 
