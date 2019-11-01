@@ -37,12 +37,20 @@ void vectors_with_unique_pointers(){
 	std::vector<std::unique_ptr<JustAClass>> myUniqueClasses;
 
 	//add a few classes
-	for (int i=0;i<10;i++)
+	for (int i=0;i<10;i++){
 		myUniqueClasses.push_back(std::unique_ptr<JustAClass>(new JustAClass(i)));
 
-	//talk
-	for (int i=0;i<10;i++)
-		myUniqueClasses[i]->speak();
+		//or new in  c++11, same function as above but with  abridged syntax
+		myUniqueClasses.emplace_back(new JustAClass(i));
+	}
+
+
+	//talk, enhanced for, type is automatically inferred
+	//note that you get x by reference, without the & x would be a copy
+	//which is forbidden with unique pointers
+	for (auto &x : myUniqueClasses)
+		x->speak();
+
 	//dont need to delete, Yay smart pointer
 }
 
